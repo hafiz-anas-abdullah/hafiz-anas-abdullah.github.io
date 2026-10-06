@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anas Abdullah — Backend Engineer</title>
+  <meta name="description" content="Backend-focused full-stack engineer specializing in Node.js, NestJS, PHP, Laravel, payments, SaaS and scalable systems.">
+  <meta name="theme-color" content="#07111f">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2307111f'/%3E%3Cpath d='M16 46 29 17h7l13 29h-9l-2-6H27l-2 6h-9Zm14-13h6l-3-8-3 8Z' fill='%2359e1ff'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      --ink: #07111f;
+      --ink-2: #0b1728;
+      --ink-3: #102238;
+      --text: #f4f8fc;
+      --muted: #a8b9ca;
+      --line: rgba(255,255,255,.12);
+      --cyan: #59e1ff;
+      --cyan-2: #b4f3ff;
+      --lime: #bbf451;
+      --max: 1180px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--text);
+      font-family: Manrope, system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, #000, transparent 80%);
+      z-index: -2;
+    }
+    a { color: inherit; }
+    .shell { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    .skip { position: fixed; left: 16px; top: -60px; padding: 10px 14px; background: var(--cyan); color: var(--ink); z-index: 20; }
+    .skip:focus { top: 16px; }
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(7,17,31,.82); backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; color: var(--ink); background: var(--cyan); border-radius: 9px; font-family: "DM Mono", monospace; font-size: .9rem; }
+    .nav-links { display: flex; align-items: center; gap: 26px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .9rem; font-weight: 600; }
+    .nav-links a:hover, .nav-links a:focus-visible { color: var(--cyan); }
+    .nav-links .contact-link { color: var(--ink); background: var(--text); padding: 9px 15px; border-radius: 999px; }
+    .hero { min-height: calc(100vh - 72px); display: grid; align-items: center; padding: 76px 0 62px; position: relative; }
+    .hero::after {
+      content: ""; position: absolute; width: 520px; height: 520px; right: -180px; top: 35px;
+      border: 1px solid rgba(89,225,255,.2); border-radius: 50%;
+      box-shadow: 0 0 0 80px rgba(89,225,255,.025), 0 0 0 160px rgba(89,225,255,.018);
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr .6fr; gap: 80px; align-items: end; }
+    .eyebrow { margin: 0 0 20px; display: flex; align-items: center; gap: 10px; color: var(--cyan); font: 500 .84rem/1.4 "DM Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .eyebrow::before { content: ""; width: 34px; height: 1px; background: currentColor; }
+    h1 { margin: 0; max-width: 850px; font-size: clamp(3.3rem, 8vw, 7.4rem); line-height: .94; letter-spacing: -.07em; font-weight: 700; }
+    h1 span { color: var(--cyan); }
+    .intro { max-width: 720px; margin: 30px 0 0; color: #c5d2df; font-size: clamp(1.05rem, 1.7vw, 1.3rem); line-height: 1.65; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 36px; }
+    .button { display: inline-flex; justify-content: center; align-items: center; min-height: 50px; padding: 0 20px; border: 1px solid var(--line); border-radius: 9px; text-decoration: none; font-weight: 700; transition: .2s ease; }
+    .button.primary { background: var(--cyan); color: var(--ink); border-color: var(--cyan); }
+    .button:hover, .button:focus-visible { transform: translateY(-2px); border-color: var(--cyan); }
+    .signal { border-left: 1px solid var(--line); padding-left: 28px; }
+    .signal-label { color: var(--muted); font: .76rem "DM Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
+    .signal strong { display: block; margin: 8px 0 22px; font-size: 1.08rem; }
+    .availability { display: inline-flex; align-items: center; gap: 9px; color: var(--lime); font: .8rem "DM Mono", monospace; }
+    .availability i { width: 8px; height: 8px; background: currentColor; border-radius: 50%; box-shadow: 0 0 0 5px rgba(187,244,81,.08); }
+    .proof-strip { border-block: 1px solid var(--line); background: var(--ink-2); }
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .proof-item { padding: 27px 22px; border-right: 1px solid var(--line); }
+    .proof-item:first-child { padding-left: 0; }
+    .proof-item:last-child { border-right: 0; }
+    .proof-item b { display: block; color: var(--cyan); font: 500 .8rem "DM Mono", monospace; text-transform: uppercase; letter-spacing: .06em; }
+    .proof-item span { display: block; margin-top: 5px; color: #d5dee8; font-weight: 700; }
+    section { padding: 110px 0; }
+    .section-head { display: grid; grid-template-columns: .65fr 1.35fr; gap: 50px; align-items: start; margin-bottom: 50px; }
+    .kicker { color: var(--cyan); font: 500 .82rem "DM Mono", monospace; text-transform: uppercase; letter-spacing: .08em; }
+    h2 { margin: 0; font-size: clamp(2.1rem, 5vw, 4.3rem); line-height: 1.05; letter-spacing: -.045em; }
+    .section-lede { margin: 18px 0 0; max-width: 700px; color: var(--muted); font-size: 1.05rem; }
+    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin: 0 0 30px; }
+    .filter { appearance: none; border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 9px 14px; border-radius: 999px; font: 600 .85rem Manrope, sans-serif; cursor: pointer; }
+    .filter[aria-pressed="true"] { background: var(--text); color: var(--ink); border-color: var(--text); }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .project { min-height: 380px; padding: 30px; background: var(--ink-2); border: 1px solid var(--line); border-radius: 16px; display: flex; flex-direction: column; transition: .25s ease; overflow: hidden; position: relative; }
+    .project::after { content: attr(data-index); position: absolute; right: 22px; top: 14px; color: rgba(255,255,255,.035); font: 700 6rem/1 Manrope; letter-spacing: -.09em; }
+    .project:hover { transform: translateY(-4px); border-color: rgba(89,225,255,.45); background: #0d1c30; }
+    .project[hidden] { display: none; }
+    .project-top { position: relative; z-index: 1; }
+    .stack { color: var(--cyan); font: .76rem "DM Mono", monospace; text-transform: uppercase; letter-spacing: .05em; }
+    .project h3 { margin: 14px 0 14px; max-width: 80%; font-size: 1.75rem; line-height: 1.15; letter-spacing: -.03em; }
+    .project p { color: var(--muted); margin: 0; }
+    .project ul { padding-left: 18px; color: #d7e0e9; }
+    .project li { margin: 8px 0; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 24px; }
+    .project-tags span { padding: 5px 9px; background: rgba(89,225,255,.07); border: 1px solid rgba(89,225,255,.16); border-radius: 6px; color: var(--cyan-2); font: .72rem "DM Mono", monospace; }
+    .expertise { background: var(--ink-2); border-block: 1px solid var(--line); }
+    .capabilities { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .capability { background: var(--ink-2); padding: 32px; min-height: 260px; }
+    .capability .num { color: var(--cyan); font: .76rem "DM Mono", monospace; }
+    .capability h3 { margin: 50px 0 12px; font-size: 1.35rem; }
+    .capability p { color: var(--muted); margin: 0; }
+    .tech-cloud { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 42px; }
+    .tech-cloud span { padding: 10px 14px; border: 1px solid var(--line); border-radius: 8px; color: #d8e4ef; font: .83rem "DM Mono", monospace; }
+    .timeline { display: grid; grid-template-columns: 220px 1fr; }
+    .timeline-item { display: contents; }
+    .timeline-date { padding: 28px 26px 28px 0; color: var(--cyan); font: .82rem "DM Mono", monospace; border-top: 1px solid var(--line); }
+    .timeline-copy { padding: 24px 0 30px 32px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); position: relative; }
+    .timeline-copy::before { content: ""; position: absolute; left: -5px; top: 31px; width: 9px; height: 9px; background: var(--ink); border: 2px solid var(--cyan); border-radius: 50%; }
+    .timeline-copy h3 { margin: 0; font-size: 1.25rem; }
+    .timeline-copy b { display: block; color: var(--muted); margin: 3px 0 10px; font-weight: 500; }
+    .timeline-copy p { margin: 0; color: var(--muted); }
+    .contact { padding-top: 35px; }
+    .contact-panel { padding: 64px; border-radius: 22px; color: var(--ink); background: var(--cyan); display: grid; grid-template-columns: 1.25fr .75fr; align-items: end; gap: 50px; position: relative; overflow: hidden; }
+    .contact-panel::after { content: "{ }"; position: absolute; right: -20px; top: -50px; color: rgba(7,17,31,.08); font: 800 13rem/1 "DM Mono", monospace; }
+    .contact-panel .kicker { color: #214053; }
+    .contact-panel h2 { max-width: 760px; position: relative; z-index: 1; }
+    .contact-panel p { margin: 18px 0 0; color: #234456; max-width: 670px; }
+    .contact-actions { display: flex; flex-direction: column; gap: 10px; position: relative; z-index: 1; }
+    .contact-actions .button { border-color: rgba(7,17,31,.25); }
+    .contact-actions .button.primary { background: var(--ink); color: var(--text); border-color: var(--ink); }
+    footer { padding: 42px 0; color: var(--muted); }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-inner span:last-child { font: .76rem "DM Mono", monospace; }
+    :focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+    @media (max-width: 850px) {
+      .nav-links a:not(.contact-link) { display: none; }
+      .hero { min-height: auto; padding-top: 90px; }
+      .hero-grid, .section-head, .contact-panel { grid-template-columns: 1fr; }
+      .signal { border-left: 0; border-top: 1px solid var(--line); padding: 24px 0 0; }
+      .proof-grid { grid-template-columns: repeat(2,1fr); }
+      .proof-item:nth-child(2) { border-right: 0; }
+      .proof-item:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .projects, .capabilities { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 130px 1fr; }
+      .contact-panel { padding: 42px 30px; }
+    }
+    @media (max-width: 520px) {
+      .shell { width: min(100% - 26px, var(--max)); }
+      h1 { font-size: clamp(3rem, 16vw, 4.8rem); }
+      section { padding: 78px 0; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .proof-item, .proof-item:first-child { padding: 20px 0; border-right: 0; border-top: 1px solid var(--line); }
+      .proof-item:first-child { border-top: 0; }
+      .project { padding: 24px; min-height: 410px; }
+      .timeline { display: block; }
+      .timeline-item { display: block; }
+      .timeline-date { padding-bottom: 5px; }
+      .timeline-copy { border-left: 0; padding-left: 0; }
+      .timeline-copy::before { display: none; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top" aria-label="Anas Abdullah, home"><span class="brand-mark">AA</span><span>Anas Abdullah</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Work</a><a href="#expertise">Expertise</a><a href="#experience">Experience</a>
+        <a class="contact-link" href="#contact">Let’s talk</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div>
+          <p class="eyebrow">Backend-focused full-stack engineer</p>
+          <h1>I build systems that <span>hold up.</span></h1>
+          <p class="intro">I’m Anas Abdullah — a Node.js, NestJS, PHP and Laravel engineer turning complex business rules into secure APIs, reliable payments and practical products.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#work">Explore selected work</a>
+            <a class="button" href="https://www.linkedin.com/in/hafiz-anas-abdullah/" target="_blank" rel="noreferrer">LinkedIn profile</a>
+          </div>
+        </div>
+        <aside class="signal" aria-label="Professional focus">
+          <span class="signal-label">Current focus</span>
+          <strong>Senior backend and full-stack engineering</strong>
+          <span class="signal-label">Based in</span>
+          <strong>Pakistan · Open to remote work</strong>
+          <span class="availability"><i aria-hidden="true"></i> Open to Laravel &amp; Node.js roles</span>
+        </aside>
+      </div>
+    </section>
+
+    <div class="proof-strip" aria-label="Core professional strengths">
+      <div class="shell proof-grid">
+        <div class="proof-item"><b>Building since</b><span>2017</span></div>
+        <div class="proof-item"><b>Primary stacks</b><span>Node.js + Laravel</span></div>
+        <div class="proof-item"><b>Product domains</b><span>SaaS, fitness, commerce</span></div>
+        <div class="proof-item"><b>Specialties</b><span>APIs, payments, RBAC</span></div>
+      </div>
+    </div>
+
+    <section id="work">
+      <div class="shell">
+        <div class="section-head">
+          <span class="kicker">Selected work / 01</span>
+          <div><h2>Products with real operational depth.</h2><p class="section-lede">A selection of multi-role platforms, marketplaces and subscription products I have helped develop across Node.js and Laravel ecosystems.</p></div>
+        </div>
+        <div class="filters" role="group" aria-label="Filter projects by technology">
+          <button class="filter" type="button" data-filter="all" aria-pressed="true">All projects</button>
+          <button class="filter" type="button" data-filter="node" aria-pressed="false">Node.js / NestJS</button>
+          <button class="filter" type="button" data-filter="laravel" aria-pressed="false">PHP / Laravel</button>
+        </div>
+        <div class="projects" aria-live="polite">
+          <article class="project" data-stack="node" data-index="01"><div class="project-top"><span class="stack">Node.js · NestJS · MongoDB</span><h3>CalisFix</h3><p>Multi-role fitness coaching and subscription platform for clients, trainers, nutrition teams and administrators.</p><ul><li>Localized pricing and Paymob payment flows</li><li>Complex workout and nutrition program tooling</li><li>Chat, notifications, analytics and role-aware privacy</li></ul></div><div class="project-tags"><span>NestJS</span><span>React</span><span>Next.js</span><span>Payments</span></div></article>
+          <article class="project" data-stack="node" data-index="02"><div class="project-top"><span class="stack">Node.js · NestJS · MongoDB</span><h3>GymPassport</h3><p>Corporate wellness platform connecting operators, venue partners, businesses, employees and finance teams.</p><ul><li>Scoped multi-portal identity and permissions</li><li>Subscriptions, bookings and QR check-ins</li><li>Invoices, payouts, reports and exports</li></ul></div><div class="project-tags"><span>B2B SaaS</span><span>RBAC</span><span>PDFKit</span><span>QR</span></div></article>
+          <article class="project" data-stack="node" data-index="03"><div class="project-top"><span class="stack">Node.js · NestJS · MongoDB</span><h3>SM Fitness Platform</h3><p>Subscription fitness and education platform delivering programs, paid media and progress tracking across web and mobile.</p><ul><li>Stripe and Apple subscription lifecycles</li><li>Program completion and paid-access rules</li><li>Server-side administration and activity history</li></ul></div><div class="project-tags"><span>Stripe</span><span>Apple IAP</span><span>AWS S3</span><span>Firebase</span></div></article>
+          <article class="project" data-stack="laravel" data-index="04"><div class="project-top"><span class="stack">PHP · Laravel · MySQL</span><h3>BNW Collections</h3><p>E-commerce platform spanning catalog variants, inventory, promotions, checkout, orders and post-purchase operations.</p><ul><li>Reviews, ratings and product discounts</li><li>Variant-image and option-value integrity</li><li>Checkout, transaction and order workflows</li></ul></div><div class="project-tags"><span>Laravel</span><span>Eloquent</span><span>Blade</span><span>Commerce</span></div></article>
+          <article class="project" data-stack="laravel" data-index="05"><div class="project-top"><span class="stack">PHP · Laravel · MySQL</span><h3>Forsa Marketplace</h3><p>Location-aware multi-vendor marketplace for discovering nearby stores and offers and completing customer orders.</p><ul><li>Discovery, cart, wishlist and order APIs</li><li>Public browsing with protected transactions</li><li>Location-rich search and Stripe payments</li></ul></div><div class="project-tags"><span>Laravel</span><span>REST APIs</span><span>Stripe</span><span>Geolocation</span></div></article>
+          <article class="project" data-stack="laravel" data-index="06"><div class="project-top"><span class="stack">PHP · Laravel · MySQL</span><h3>Teachive / Dataxhub</h3><p>Education marketplace connecting students with tutors through booking, payments, wallets, commissions and payouts.</p><ul><li>Appointments and role-aware profiles</li><li>Student wallets and educator earnings</li><li>Social signup and administration</li></ul></div><div class="project-tags"><span>Laravel</span><span>Sanctum</span><span>Socialite</span><span>Wallets</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="expertise" id="expertise">
+      <div class="shell">
+        <div class="section-head"><span class="kicker">Engineering focus / 02</span><div><h2>Backend depth, product awareness.</h2><p class="section-lede">I work across the full delivery path, with the deepest focus on domain design, secure APIs and the operational details that keep products dependable.</p></div></div>
+        <div class="capabilities">
+          <article class="capability"><span class="num">01</span><h3>Domain-rich APIs</h3><p>Modular services for subscriptions, bookings, commerce, media and multi-role workflows with validation, documentation and clear boundaries.</p></article>
+          <article class="capability"><span class="num">02</span><h3>Payments &amp; money flows</h3><p>Checkout, webhooks, coupons, wallets, invoices, commissions, payouts and localized pricing across multiple payment ecosystems.</p></article>
+          <article class="capability"><span class="num">03</span><h3>Security &amp; access</h3><p>JWT authentication, scoped identity, role and permission controls, data privacy, request sanitization and audit trails.</p></article>
+        </div>
+        <div class="tech-cloud" aria-label="Technology toolkit"><span>Node.js</span><span>TypeScript</span><span>NestJS</span><span>PHP</span><span>Laravel</span><span>MongoDB</span><span>MySQL</span><span>PostgreSQL</span><span>React</span><span>Next.js</span><span>Redis</span><span>Stripe</span><span>AWS S3</span><span>Firebase</span><span>Docker</span><span>Git</span></div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="shell">
+        <div class="section-head"><span class="kicker">Experience / 03</span><div><h2>Built through long-term product work.</h2><p class="section-lede">My experience spans government-scale public systems and sustained product engineering across fitness, wellness, commerce, education and marketplaces.</p></div></div>
+        <div class="timeline">
+          <article class="timeline-item"><div class="timeline-date">2020 — Present</div><div class="timeline-copy"><h3>Senior Backend / Full-Stack Developer</h3><b>Softzee Solutions</b><p>Building and maintaining production platforms across Node.js, NestJS, PHP, Laravel, React and Next.js, with ownership across APIs, payments, administration and deployment-facing workflows.</p></div></article>
+          <article class="timeline-item"><div class="timeline-date">2017 — 2020</div><div class="timeline-copy"><h3>Web Developer</h3><b>Power Information Technology Company · Ministry of Energy</b><p>Contributed to public-facing and internal web systems, including a customer complaint management platform used across Pakistan’s power sector.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="shell contact-panel">
+        <div><span class="kicker">Start a conversation / 04</span><h2>Looking for someone who can own the difficult backend parts?</h2><p>I’m open to senior backend and full-stack opportunities where reliable APIs, complex business logic and practical product thinking matter.</p></div>
+        <div class="contact-actions"><a class="button primary" href="https://www.linkedin.com/in/hafiz-anas-abdullah/" target="_blank" rel="noreferrer">Contact me on LinkedIn</a><a class="button" href="https://github.com/hafiz-anas-abdullah" target="_blank" rel="noreferrer">View GitHub profile</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell footer-inner"><span>© 2026 Anas Abdullah. Built to show the work behind the title.</span><span>Node.js · Laravel · Product Engineering</span></div></footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter');
+    const projects = document.querySelectorAll('.project');
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      projects.forEach(project => { project.hidden = filter !== 'all' && project.dataset.stack !== filter; });
+    }));
+  </script>
+</body>
+</html>
